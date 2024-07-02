@@ -3,10 +3,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class Product {
   final String id;
   String title;
-  double price;
+  num price;
   String imageUrl;
   bool isFavourite;
-  String productID;
+  String categoryID;
 
   Product({
     required this.id,
@@ -14,7 +14,7 @@ class Product {
     required this.price,
     required this.imageUrl,
     required this.isFavourite,
-    required this.productID,
+    required this.categoryID,
   });
 
   factory Product.fromQuerySnapshot(QueryDocumentSnapshot query) {
@@ -24,7 +24,7 @@ class Product {
       price: query['price'],
       imageUrl: query['imageUrl'],
       isFavourite: query['isFavourite'],
-      productID: query['productID'],
+      categoryID: query['categoryID'],
     );
   }
 }

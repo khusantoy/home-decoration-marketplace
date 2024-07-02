@@ -6,5 +6,4 @@ class ProductsFirebaseServices {
   Stream<QuerySnapshot> getProducts() async* {
     yield* _productCollection.snapshots();
   }
-
 }

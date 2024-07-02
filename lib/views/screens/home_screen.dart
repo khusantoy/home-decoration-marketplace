@@ -117,7 +117,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   Padding(
                     padding: const EdgeInsets.only(left: 20, top: 30),
                     child: SizedBox(
-                      width: 120,
                       height: 50,
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
@@ -127,9 +126,9 @@ class _HomeScreenState extends State<HomeScreen> {
                           backgroundColor: Colors.green,
                         ),
                         onPressed: () {},
-                        child: const Text(
-                          "Popular",
-                          style: TextStyle(
+                        child: Text(
+                          category,
+                          style: const TextStyle(
                             color: Colors.white,
                             fontSize: 18,
                           ),

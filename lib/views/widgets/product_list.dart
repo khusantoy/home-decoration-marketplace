@@ -1,6 +1,9 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:home_decoration/controllers/categories_controller.dart';
 import 'package:home_decoration/controllers/products_controller.dart';
+import 'package:home_decoration/models/product.dart';
 import 'package:provider/provider.dart';
 
 class ProductList extends StatelessWidget {
@@ -9,6 +12,7 @@ class ProductList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final productController = context.read<ProductsController>();
+    final categoryController = context.read<CategoriesController>();
 
     return StreamBuilder(
         stream: productController.list,
@@ -37,6 +41,8 @@ class ProductList extends StatelessWidget {
             ),
             itemCount: products.length,
             itemBuilder: (context, index) {
+              final product = Product.fromQuerySnapshot(products[index]);
+
               return Container(
                 padding: const EdgeInsets.all(10.0),
                 decoration: BoxDecoration(
@@ -49,9 +55,15 @@ class ProductList extends StatelessWidget {
                     Positioned(
                       top: -50,
                       left: -18,
-                      child: Image.asset(
-                        "assets/images/lamp.png",
-                        height: 100,
+                      child: SizedBox(
+                        width: 100,
+                        child: CachedNetworkImage(
+                          imageUrl: product.imageUrl,
+                          placeholder: (context, url) =>
+                              const CircularProgressIndicator(),
+                          errorWidget: (context, url, error) =>
+                              const Icon(Icons.error),
+                        ),
                       ),
                     ),
                     const Align(
@@ -70,9 +82,9 @@ class ProductList extends StatelessWidget {
                         ],
                       ),
                     ),
-                    const Align(
+                    Align(
                       alignment: Alignment.centerLeft,
-                      child: Text("Table Desk Lamp"),
+                      child: Text(product.title),
                     ),
                     Positioned(
                       top: 74.h,
@@ -83,7 +95,7 @@ class ProductList extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          const Text("\$142.00"),
+                          Text("${product.price} sum"),
                           IconButton(
                             onPressed: () {},
                             icon: const Icon(Icons.favorite_outline),
