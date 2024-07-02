@@ -202,39 +202,38 @@ class ProductDetailsScreen extends StatelessWidget {
                 const SizedBox(
                   height: 150,
                 ),
-                SizedBox(
-                  width: double.infinity,
-                  height: 50,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.green,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        )),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (ctx) => const ProductDetailsScreen2(),
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    SizedBox(
+                      width: double.infinity,
+                      height: 50,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.green,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            )),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (ctx) => const ProductDetailsScreen2(),
+                            ),
+                          );
+                        },
+                        child: const Text(
+                          "ADD TO CART",
+                          style: TextStyle(color: Colors.white),
                         ),
-                      );
-                    },
-                    child: const Text(
-                      "ADD TO CART",
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  ),
+                      ),
+                    )
+                  ],
                 )
               ],
             ),
           ),
         ],
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: const Icon(
-          Icons.shopping_bag,
-        ),
       ),
     );
   }

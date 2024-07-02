@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:home_decoration/views/screens/category_screen.dart';
+import 'package:home_decoration/views/widgets/product_list.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -183,78 +184,10 @@ class _HomeScreenState extends State<HomeScreen> {
               ],
             ),
           ),
-          Expanded(
+          const Expanded(
             child: Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: GridView.builder(
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  mainAxisSpacing: 50,
-                  crossAxisSpacing: 15,
-                  childAspectRatio: 3 / 3,
-                ),
-                itemCount: 10,
-                itemBuilder: (context, index) {
-                  return Container(
-                    padding: const EdgeInsets.all(10),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: Colors.grey.shade300,
-                    ),
-                    child: Stack(
-                      clipBehavior: Clip.none,
-                      children: [
-                        Positioned(
-                          top: -50,
-                          left: -18,
-                          child: Image.asset(
-                            "assets/images/lamp.png",
-                            height: 100,
-                          ),
-                        ),
-                        const Align(
-                          alignment: Alignment.topRight,
-                          child: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Icon(
-                                Icons.star,
-                                color: Colors.amber,
-                              ),
-                              Text(
-                                "(5.0)",
-                                style: TextStyle(color: Colors.amber),
-                              )
-                            ],
-                          ),
-                        ),
-                        const Align(
-                          alignment: Alignment.centerLeft,
-                          child: Text("Table Desk Lamp"),
-                        ),
-                        Positioned(
-                          top: 74.h,
-                          child: const Text("Lamp"),
-                        ),
-                        Align(
-                          alignment: Alignment.bottomLeft,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              const Text("\$142.00"),
-                              IconButton(
-                                onPressed: () {},
-                                icon: const Icon(Icons.favorite_outline),
-                              )
-                            ],
-                          ),
-                        )
-                      ],
-                    ),
-                  );
-                },
-              ),
-            ),
+                padding: EdgeInsets.symmetric(horizontal: 20),
+                child: ProductList()),
           ),
         ],
       ),
