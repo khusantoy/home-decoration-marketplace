@@ -43,6 +43,10 @@ class ProductList extends StatelessWidget {
             itemBuilder: (context, index) {
               final product = Product.fromQuerySnapshot(products[index]);
 
+              String category = '';
+
+
+
               return Container(
                 padding: const EdgeInsets.all(10.0),
                 decoration: BoxDecoration(

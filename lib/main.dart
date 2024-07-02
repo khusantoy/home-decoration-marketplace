@@ -1,9 +1,11 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:home_decoration/controllers/categories_controller.dart';
 import 'package:home_decoration/controllers/products_controller.dart';
 import 'package:home_decoration/views/screens/home_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:home_decoration/views/screens/login_screen.dart';
 import 'package:provider/provider.dart';
 import 'firebase_options.dart';
 
@@ -37,7 +39,16 @@ class MyApp extends StatelessWidget {
                 home: child,
               );
             },
-            child: const HomeScreen(),
+            child: StreamBuilder(
+              stream: FirebaseAuth.instance.authStateChanges(),
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  return const HomeScreen();
+                }
+
+                return const LoginScreen();
+              },
+            ),
           );
         });
   }
